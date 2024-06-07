@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ความหมายของตัวเลข</title>
+<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Athiti', sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  logo {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 100vh;
+  }
+
+  .container {
+    font-family: 'Athiti', sans-serif;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  h1 {
+    font-family: 'Athiti', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+
+  .number {
+    font-family: 'Athiti', sans-serif;
+    font-size: 4em;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+
+  .meaning {
+    font-family: 'Athiti', sans-serif;
+    font-size: 1.5em;
+    color: #28a745;
+    margin-bottom: 20px;
+  }
+
+  #image-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  button {
+    font-family: 'Athiti', sans-serif;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="โลโก้" id="logo">
+        <h1>Today's number</h1>
+        <div class="number" id="number">--</div>
+        <div class="meaning" id="meaning">ความหมายที่นี่</div>
+        <div id="image-container">
+          <img src="" id="image" alt="รูปภาพที่เกี่ยวข้อง">
+        </div>
+        <button onclick="generateRandomNumber()">สุ่ม</button>
+        <button onclick="reset()">เริ่มใหม่</button>
+      </div>
+
+<script>
+  function generateRandomNumber() {
+    var randomNumber = Math.floor(Math.random() * 100);
+    var numberElement = document.getElementById("number");
+    var meaningElement = document.getElementById("meaning");
+    var imageElement = document.getElementById("image");
+    
+    // รูปแบบตัวเลขให้มี 2 หลักเสมอ
+    var formattedNumber = ("0" + randomNumber).slice(-2);
+    
+    numberElement.textContent = formattedNumber;
+
+    // ตารางค่าความหมายและ URL รูปภาพ
+    var meanings = {
+      "00": "ความหมายของตัวเลข 00",
+      "01": "ความหมายของตัวเลข 01",
+      // เพิ่มความหมายตัวเลขอื่น ๆ ตามต้องการ
+    };
+    var images = {
+      "00": "https://via.placeholder.com/200",
+      "01": "https://via.placeholder.com/200",
+      // เพิ่ม URL รูปภาพอื่น ๆ ตามต้องการ
+    };
+
+// เลือกรูปภาพและความหมายตามตัวเลขที่สุ่ม
+meaningElement.textContent = meanings[formattedNumber] || "ความหมายที่นี่";
+imageElement.src = images[formattedNumber] || "https://via.placeholder.com/200";
+imageElement.style.display = "block"; // แสดงรูปภาพ
+}
+
+function reset() {
+var numberElement = document.getElementById("number");
+var meaningElement = document.getElementById("meaning");
+var imageElement = document.getElementById("image");
+
+numberElement.textContent = "--";
+meaningElement.textContent = "ความหมายที่นี่";
+imageElement.src = "";
+imageElement.style.display = "none"; // ซ่อนรูปภาพ
+}
+</script>
+</body>
+</html>
